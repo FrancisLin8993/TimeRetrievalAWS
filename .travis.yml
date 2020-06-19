@@ -7,4 +7,4 @@ before_install:
   - docker build -t francislin8993/time-retrieval-aws -f Dockerfile.dev .
 
 script:
-  - docker run francislin8993/time-retrieval-aws npm run test -- --coverage
+  - docker run -e CI=true francislin8993/time-retrieval-aws npm run test
