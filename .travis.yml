@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true francislin8993/time-retrieval-aws npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-southeast-2'
+  app: 'time-retrieval'
+  env: 'TimeRetrieval-env'
+  bucket_name: 'elasticbeanstalk-ap-southeast-2-426153113534'
+  bucket_path: 'time-retrieval'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
