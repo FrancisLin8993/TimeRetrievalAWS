@@ -6,7 +6,7 @@ import { Autocomplete, createFilterOptions } from '@material-ui/lab';
 import moment from 'moment';
 import 'moment-timezone';
 import { getTweetCreatedTime } from '../../apis/twitter';
-import { extractTweetId } from '../../utils/helpers';
+import { extractTweetId, validateLink } from '../../utils/helpers';
 import { ALL_CITIES } from '../../utils/const';
 
 function TweetsTime() {
@@ -41,6 +41,9 @@ function TweetsTime() {
           const errors = {};
           if (!values.link) {
             errors.link = 'The link is required';
+          }
+          if (!validateLink(values.link)) {
+            errors.link = 'The link is not valid, please try again.';
           }
           return errors;
         }}

@@ -9,6 +9,23 @@ export function extractTweetId(url) {
 }
 
 /**
+ * return the boolean result of validating a twitter link
+ * @param {string} url
+ */
+export function validateLink(url) {
+  const stringArr = url.split('/');
+  const length = stringArr.length;
+  const tweetIdInString = stringArr[length - 1];
+  if (
+    stringArr[length - 2] !== 'status' ||
+    isNaN(parseInt(tweetIdInString, 10))
+  ) {
+    return false;
+  }
+  return true;
+}
+
+/**
  * Format the datetime string
  * @param {string} datetimeString
  */
